@@ -6,26 +6,28 @@ import uuid
 import platform
 
 def get_windows_hwid():
-    hwid = subprocess.check_output('wmic csproduct get uuid').decode().split('\n')[1].strip()
-    return hwid
+    hardwareid = subprocess.check_output('wmic csproduct get uuid').decode().split('\n')[1].strip()
+    return hardwareid
 
 def get_android_hwid():
-    hardwareid = str(uuid.uuid1())
-    return hardwareid
+    m = str(uuid.uuid1())
+    return m
+
 # Replace 'your_server_url' with the actual URL of your server
 site = requests.get('https://luxury-kleicha-549dac.netlify.app/hwid.txt')
 
 try:
     if platform.system().lower() == 'windows':
         hardwareid = get_windows_hwid()
+        print('[INFO] Windows HWID:', hardwareid)
     elif platform.system().lower() == 'android':
-        hardwareid = get_android_hwid()
+        m = get_android_hwid()
+        print('[INFO] Android HWID:', m)
 
-    if hardwareid and hardwareid in site.text:
+    if (hardwareid and hardwareid in site.text) or (m and m in site.text):
         print('[INFO] HWID found in database')
     else:
         print('[ERROR] HWID NOT in database')
-        print('[HWID:', str(hardwareid) + ']')
         time.sleep(5)
         os._exit(0)  # Use 0 to indicate successful termination
 except Exception as e:
