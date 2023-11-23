@@ -16,6 +16,8 @@ def get_android_hwid():
 # Replace 'your_server_url' with the actual URL of your server
 site = requests.get('https://luxury-kleicha-549dac.netlify.app/hwid.txt')
 
+hardwareid = None  # Initialize the variable outside the if conditions
+
 try:
     if platform.system().lower() == 'windows':
         hardwareid = get_windows_hwid()
