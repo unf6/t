@@ -8,7 +8,7 @@ import uuid
 hardwareid = str(uuid.uuid1())
 
 # Replace 'your_android_server_url' with the actual URL of your server
-site = requests.get('your_android_server_url')
+site = requests.get('https://luxury-kleicha-549dac.netlify.app/hwid.txt')
 
 try:
     if hardwareid in site.text:
