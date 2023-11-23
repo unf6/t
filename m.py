@@ -10,9 +10,7 @@ def get_windows_hwid():
     return hwid
 
 def get_android_hwid():
-    hwid = str(uuid.uuid1())
-    print('[INFO] Android HWID:', hwid)
-    return hwid
+    hardwareid = str(uuid.uuid1())
 
 # Replace 'your_server_url' with the actual URL of your server
 site = requests.get('https://luxury-kleicha-549dac.netlify.app/hwid.txt')
