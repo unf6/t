@@ -11,7 +11,7 @@ def get_windows_hwid():
 
 def get_android_hwid():
     hardwareid = str(uuid.uuid1())
-
+    return hardwareid
 # Replace 'your_server_url' with the actual URL of your server
 site = requests.get('https://luxury-kleicha-549dac.netlify.app/hwid.txt')
 
@@ -20,9 +20,6 @@ try:
         hardwareid = get_windows_hwid()
     elif platform.system().lower() == 'android':
         hardwareid = get_android_hwid()
-    else:
-        print('[ERROR] Unsupported platform')
-        os._exit(1)
 
     if hardwareid and hardwareid in site.text:
         print('[INFO] HWID found in database')
